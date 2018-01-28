@@ -1,12 +1,12 @@
 // Motor A pins (enableA = enable motor, pinA1 = forward, pinA2 = backward)
-int enableA = 11;
-int pinA1 = 6;
-int pinA2 = 5;
+int enableA = 6;
+int pinA1 = 7;
+int pinA2 = 8;
 
 //Motor B pins (enabledB = enable motor, pinB2 = forward, pinB2 = backward)
-int enableB = 10;
-int pinB1 = 4;
-int pinB2 = 3;
+int enableB = 2;
+int pinB1 = 3;
+int pinB2 = 4;
 
 //This lets you run the loop a single time for testing
 boolean run = true;
