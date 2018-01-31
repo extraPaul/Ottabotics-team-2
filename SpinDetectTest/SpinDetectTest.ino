@@ -1,17 +1,17 @@
 // Motor A pins (enableA = enable motor, pinA1 = forward, pinA2 = backward)
-int enableA = 6;
-int pinA1 = 7;
-int pinA2 = 8;
+int enableA = 7;
+int pinA1 = 0;
+int pinA2 = 1;
 
 //Motor B pins (enabledB = enable motor, pinB2 = forward, pinB2 = backward)
-int enableB = 2;
-int pinB1 = 3;
-int pinB2 = 4;
+int enableB = 8;
+int pinB1 = 2;
+int pinB2 = 3;
 
-int trigPin = 9;
-int echoPin = 10;
-int led = 1;
-int led2 = 5;
+int trigPin = 5;
+int echoPin = 6;
+int led = 10;
+int led2 = 11;
 
 //This lets you run the loop a single time for testing
 boolean run = true;
@@ -31,13 +31,12 @@ void setup() {
   pinMode(enableB, OUTPUT);
   pinMode(pinB1, OUTPUT);
   pinMode(pinB2, OUTPUT);
-
-  enableMotors();
 }
+
 void loop() {
   if(run){
+    enableMotors();
     if(looking){
-      turnRight(200);
       long duration, distance;
       digitalWrite(trigPin, LOW);  // Added this line
       delayMicroseconds(2); // Added this line
@@ -61,15 +60,14 @@ void loop() {
         Serial.print(distance);
         Serial.println(" cm");
       }
+      if(looking)
+        turnRight(200);
     } else {
       //Go forward
-      forward(200);
+      forward(400);
       //Go backward
-      backward(200);
-      //Go forward
-      forward(200);
-      //Go backward
-      backward(200);
+      backward(400);
+      looking = true;
     }
   }
 }
