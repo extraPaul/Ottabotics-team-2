@@ -38,7 +38,7 @@ enableMotors(153);
 }
 void loop() {
 if(run){
-  enableMotors();
+  enableMotors(153);
 
     long duration2, distance2;
     digitalWrite(trigPin2, LOW);  // Added this line
@@ -150,18 +150,18 @@ analogWrite(enableA, power);
 
 void motorBOn(int power)
 {
-digitalWrite(enableB, power);
+analogWrite(enableB, power);
 }
 
 //disable motors
 void motorAOff()
 {
-digitalWrite(enableB, LOW);
+analogWrite(enableB, LOW);
 }
 
 void motorBOff()
 {
-digitalWrite(enableA, LOW);
+analogWrite(enableA, LOW);
 }
 
 //motor A controls
