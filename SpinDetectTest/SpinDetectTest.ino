@@ -1,10 +1,10 @@
 // Motor A pins (enableA = enable motor, pinA1 = forward, pinA2 = backward)
-int enableA = 2;
+int enableA = 19;
 int pinA1 = 3;
 int pinA2 = 4;
 
 //Motor B pins (enabledB = enable motor, pinB2 = forward, pinB2 = backward)
-int enableB = 5;
+int enableB = 20;
 int pinB1 = 6;
 int pinB2 = 7;
 
@@ -34,7 +34,7 @@ pinMode(enableB, OUTPUT);
 pinMode(pinB1, OUTPUT);
 pinMode(pinB2, OUTPUT);
 
-enableMotors();
+enableMotors(153);
 }
 void loop() {
 if(run){
@@ -87,10 +87,10 @@ if(run){
 
 //Define high-level H-bridge commands
 
-void enableMotors()
+void enableMotors(int power)
 {
-motorAOn();
-motorBOn();
+motorAOn(power);
+motorBOn(power);
 }
 
 void disableMotors()
@@ -143,14 +143,14 @@ delay(time);
 //Define low-level H-bridge commands
 
 //enable motors
-void motorAOn()
+void motorAOn(int power)
 {
-digitalWrite(enableA, HIGH);
+analogWrite(enableA, power);
 }
 
-void motorBOn()
+void motorBOn(int power)
 {
-digitalWrite(enableB, HIGH);
+digitalWrite(enableB, power);
 }
 
 //disable motors
