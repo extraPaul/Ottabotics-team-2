@@ -37,56 +37,48 @@ pinMode(pinB2, OUTPUT);
 
 enableMotors(153);
 }
-void loop() {
-if(run){
-  enableMotors(153);
 
-    long duration2, distance2;
-    digitalWrite(trigPin2, LOW);  // Added this line
-    delayMicroseconds(2); // Added this line
-    digitalWrite(trigPin2, HIGH);
-    //  delayMicroseconds(1000); - Removed this line
-    delayMicroseconds(10); // Added this line
-    digitalWrite(trigPin2, LOW);
-    duration2 = pulseIn(echoPin2, HIGH);
-    distance2 = (duration2/2) / 29.1;
-    if (distance2 > 5) {  // This is where the LED On/Off happens
-      digitalWrite(led2, HIGH);
-      backward(1000);
-    } else {
-      digitalWrite(led2, LOW);
-    }
+void loop() {
+  if(run){
+    enableMotors(153);
   
-  if(looking){
-    long duration, distance;
-    digitalWrite(trigPin, LOW);  // Added this line
-    delayMicroseconds(2); // Added this line
-    digitalWrite(trigPin, HIGH);
-    //  delayMicroseconds(1000); - Removed this line
-    delayMicroseconds(10); // Added this line
-    digitalWrite(trigPin, LOW);
-    duration = pulseIn(echoPin, HIGH);
-    distance = (duration/2) / 29.1;
-    if (distance < 50) {  // This is where the LED On/Off happens
-      digitalWrite(led,HIGH); // When the Red condition is met, the Green LED should turn off
-      looking = false;
-    } else {
-      digitalWrite(led,LOW);
-    }
-      if (distance >= 200 || distance <= 0){
-      Serial.println("Out of range");
-    } else {
-      Serial.print(distance);
-      Serial.println("cm");
-    }
-    if(looking)
+      long  duration, distance, duration2, distance2;
+      digitalWrite(trigPin, LOW);  // Added this line
+      digitalWrite(trigPin2, LOW);  // Added this line
+      delayMicroseconds(2); // Added this line
+      digitalWrite(trigPin, HIGH);
+      digitalWrite(trigPin2, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(trigPin, LOW);
+      digitalWrite(trigPin2, LOW);
+      duration = pulseIn(echoPin, HIGH);
+      duration2 = pulseIn(echoPin2, HIGH);
+      distance = (duration/2) / 29.1;
+      distance2 = (duration2/2) / 29.1;
+  
+      if (distance < 30) {  // This is where the LED On/Off happens
+        //An object was detected, therefore stop turning
+        digitalWrite(led,HIGH); // When the Red condition is met, the Green LED should turn off
+        looking = false;
+      } else {
+        digitalWrite(led,LOW);
+      }
+      
+      if (distance2 > 5) {  // This is where the LED On/Off happens
+        digitalWrite(led2, HIGH);
+        backward(1000);
+      } else {
+        digitalWrite(led2, LOW);
+      }
+    
+    if(looking){
       turnRight(200);
-  } else {
-    //Go forward
-    forward(400);
-    looking = true;
+    } else {
+      //Go forward
+      forward(400);
+      looking = true;
+    }
   }
-}
 }
 
 //Define high-level H-bridge commands
@@ -149,23 +141,23 @@ delay(time);
 //enable motors
 void motorAOn(int power)
 {
-analogWrite(enableA, power);
+digitalWrite(enableA, power);
 }
 
 void motorBOn(int power)
 {
-analogWrite(enableB, power);
+digitalWrite(enableB, power);
 }
 
 //disable motors
 void motorAOff()
 {
-analogWrite(enableB, LOW);
+digitalWrite(enableB, LOW);
 }
 
 void motorBOff()
 {
-analogWrite(enableA, LOW);
+digitalWrite(enableA, LOW);
 }
 
 //motor A controls
