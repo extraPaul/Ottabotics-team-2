@@ -1,10 +1,10 @@
 // Motor A pins (enableA = enable motor, pinA1 = forward, pinA2 = backward)
-int enableA = 19;
+int enableA = 2;
 int pinA1 = 3;
 int pinA2 = 4;
 
 //Motor B pins (enabledB = enable motor, pinB2 = forward, pinB2 = backward)
-int enableB = 20;
+int enableB = 5;
 int pinB1 = 6;
 int pinB2 = 7;
 
