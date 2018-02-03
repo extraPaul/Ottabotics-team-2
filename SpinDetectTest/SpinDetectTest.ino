@@ -13,6 +13,7 @@ int echoPin = 9;
 int trigPin2 = 11;
 int echoPin2 = 12;
 int led = 10;
+int led2 = 13;
 
 //This lets you run the loop a single time for testing
 boolean run = true;
@@ -50,8 +51,11 @@ if(run){
     duration2 = pulseIn(echoPin2, HIGH);
     distance2 = (duration2/2) / 29.1;
     if (distance2 > 5) {  // This is where the LED On/Off happens
+      digitalWrite(led2, HIGH);
       backward(1000);
-    } 
+    } else {
+      digitalWrite(led2, LOW);
+    }
   
   if(looking){
     long duration, distance;
