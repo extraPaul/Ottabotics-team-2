@@ -150,23 +150,23 @@ delay(time);
 //enable motors
 void motorAOn(int power)
 {
-analogWrite(enableA, power);
+digitalWrite(enableA, power);
 }
 
 void motorBOn(int power)
 {
-analogWrite(enableB, power);
+digitalWrite(enableB, power);
 }
 
 //disable motors
 void motorAOff()
 {
-analogWrite(enableB, LOW);
+digitalWrite(enableB, LOW);
 }
 
 void motorBOff()
 {
-analogWrite(enableA, LOW);
+digitalWrite(enableA, LOW);
 }
 
 //motor A controls

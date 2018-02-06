@@ -72,9 +72,10 @@ void loop() {
       }
     
     if(looking){
+      //Turn right, unless an object was detected
       turnRight(200);
     } else {
-      //Go forward
+      //Go forward, to push the object
       forward(400);
       looking = true;
     }
